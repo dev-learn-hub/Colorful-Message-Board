@@ -51,6 +51,8 @@ htmlcov/
 .hypothesis/
 *.cover
 *.log
+*.db
+instance/
 
 # Jupyter Notebook
 .ipynb_checkpoints
