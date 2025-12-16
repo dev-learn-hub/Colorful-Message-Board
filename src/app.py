@@ -20,6 +20,18 @@ app.register_blueprint(messages_bp)
 # Import database utility
 from src.utils.db import db
 
+# Initialize database
+with app.app_context():
+    db.init_app(app)
+    # Import models here to ensure they're registered with SQLAlchemy
+    from src.models.message import Message
+    # Create tables if they don't exist
+    try:
+        db.create_all()
+    except Exception as e:
+        # Log error but don't fail if tables already exist
+        print(f"Database initialization note: {e}")
+
 # Routes
 @app.route('/')
 def index():
