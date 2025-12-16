@@ -1,0 +1,123 @@
+/* Sticky Note Styles */
+.sticky-note {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: rotate(-1deg);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sticky-note:hover {
+    transform: rotate(0deg);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Sticky Note Colors */
+.sticky-note-yellow {
+    background-color: #fff9c4;
+    border-left: 4px solid #fbc02d;
+}
+
+.sticky-note-blue {
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196f3;
+}
+
+.sticky-note-green {
+    background-color: #e8f5e8;
+    border-left: 4px solid #4caf50;
+}
+
+.sticky-note-pink {
+    background-color: #fce4ec;
+    border-left: 4px solid #e91e63;
+}
+
+.sticky-note-purple {
+    background-color: #f3e5f5;
+    border-left: 4px solid #9c27b0;
+}
+
+.sticky-note-orange {
+    background-color: #fff3e0;
+    border-left: 4px solid #ff9800;
+}
+
+/* Message Styles */
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.message-author {
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.message-timestamp {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+}
+
+.message-content {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* No Messages Styles */
+.no-messages {
+    background-color: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    color: #6c757d;
+}
+
+/* Responsive Styles */
+@media (max-width: 640px) {
+    .container {
+        padding: 0.5rem;
+    }
+    
+    .sticky-note {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .message-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .message-timestamp {
+        font-size: 0.7rem;
+    }
+}
+
+/* Animation for new messages */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) rotate(-1deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(-1deg);
+    }
+}
+
+.message {
+    animation: fadeIn 0.3s ease-out forwards;
+}

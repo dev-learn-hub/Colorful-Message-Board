@@ -1,0 +1,15 @@
+{% for message in messages %}
+<div class="message sticky-note sticky-note-{{ message.color }}">
+    <div class="message-header">
+        <h3 class="message-author">{{ message.name }}</h3>
+        <p class="message-timestamp">{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</p>
+    </div>
+    <div class="message-content">
+        {{ message.content }}
+    </div>
+</div>
+{% else %}
+<div class="no-messages bg-white rounded-lg shadow-md p-8 text-center">
+    <p class="text-gray-600 text-lg">还没有留言，快来写第一条吧！</p>
+</div>
+{% endfor %}

@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Colorful Message Board API
+  description: API for managing messages on the Colorful Message Board
+  version: 1.0.0
+paths:
+  /messages:
+    get:
+      summary: Retrieve all messages
+      description: Get a list of all messages in reverse chronological order
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+    post:
+      summary: Create a new message
+      description: Add a new message to the board
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageCreate'
+      responses:
+        '201':
+          description: Message created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Invalid input
+  /messages/{id}:
+    delete:
+      summary: Delete a message
+      description: Remove a message from the board
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID of the message to delete
+      responses:
+        '204':
+          description: Message deleted successfully
+        '404':
+          description: Message not found
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the message
+        name:
+          type: string
+          description: Name of the message author
+        content:
+          type: string
+          description: Content of the message
+        timestamp:
+          type: string
+          format: date-time
+          description: When the message was created
+        color:
+          type: string
+          description: Color assigned to the message
+          enum: [yellow, blue, green, pink, purple, orange]
+      example:
+        id: 1
+        name: "John Doe"
+        content: "Hello, world!"
+        timestamp: "2025-12-16T10:00:00Z"
+        color: "yellow"
+    MessageCreate:
+      type: object
+      required:
+        - name
+        - content
+      properties:
+        name:
+          type: string
+          description: Name of the message author
+          minLength: 1
+          maxLength: 255
+        content:
+          type: string
+          description: Content of the message
+          minLength: 1
+          maxLength: 1000
+      example:
+        name: "John Doe"
+        content: "Hello, world!"
